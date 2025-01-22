@@ -1,6 +1,25 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
+struct Book {
+    char title[100];
+    char author[100];
+    int publicationYear;
+    int numPages;
+};
+
+struct Person {
+    char name[50];
+    int age;
+};
+
+int checkEligibility(struct Person possible_voter) {
+    if (possible_voter.age >= 18) {
+        return 1;
+    }
+    return 0;
+}
 
 int main(void) {
 
@@ -24,7 +43,15 @@ int main(void) {
     // Publication Year: 1960
     // Number of Pages: 281
 
-    
+    // struct Book toKillAMockingBird;
+    // strcpy(toKillAMockingBird.title, "To Kill a Mockingbird");
+    // strcpy(toKillAMockingBird.author, "Harper Lee");
+    // toKillAMockingBird.publicationYear = 1960;
+    // toKillAMockingBird.numPages = 281;
+    // printf("Title: %s\n", toKillAMockingBird.title);
+    // printf("Author: %s\n", toKillAMockingBird.author);
+    // printf("Publication Year: %d\n", toKillAMockingBird.publicationYear);
+    // printf("Number of Pages: %d\n", toKillAMockingBird.numPages);
 
 
 
@@ -50,5 +77,13 @@ int main(void) {
     // Name: John Doe
     // Age: 30
     // These problems will help practice working with structs, passing structs to functions, and using dynamic memory allocation.
+    struct Person *person_two = malloc(sizeof(struct Person));
+    (*person_two).age = 30;
+    strcpy((*person_two).name, "John Doe");
+    printf("Name: %s\n", (*person_two).name);
+    printf("Age: %d\n", (*person_two).age);
+    printf("Eligible to Vote: %d\n", checkEligibility(*person_two));
+    free(person_two);
+    person_two = NULL;
     return 0;
 }
